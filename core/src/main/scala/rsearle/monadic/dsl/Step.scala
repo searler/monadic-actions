@@ -21,8 +21,7 @@ import scala.concurrent.{ExecutionContext, Future}
   * @author Valentin Kasas
   * @author Richard Searle
   */
-final case class Step[+A,+
-R](run: Future[Either[R, A]]) {
+final case class Step[+A,+R](run: Future[Either[R, A]]) {
 
   def map[B](f: A => B)(implicit ec: ExecutionContext) =
     copy(run = run.map(_.right.map(f)))
